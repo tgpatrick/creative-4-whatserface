@@ -3,18 +3,18 @@
   <div class="header">
     <router-link to="/">
       <div class="logo">
-        <img src="/ordinary.png">
+        <img src="/logo.png">
       </div>
     </router-link>
     <div class="title">
-      <h1>Museum of Ordinary Objects</h1>
+      <h1>Whatserface</h1>
     </div>
   </div>
   <div class="content">
     <router-view />
   </div>
   <div class="footer">
-    <router-link to="/admin">Admin</router-link>
+    <router-link to="/admin">Stories</router-link>
   </div>
 </div>
 </template>
@@ -36,7 +36,7 @@ body {
 .header {
   display: flex;
   padding: 10px 100px 0px 100px;
-  background-color: #5BDEFF;
+  background-color: #2da691;
   color: #1C454F;
 }
 

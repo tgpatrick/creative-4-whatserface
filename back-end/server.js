@@ -10,24 +10,26 @@ app.use(bodyParser.urlencoded({
 // Configure multer so that it will upload to '../front-end/public/images'
 const multer = require('multer')
 const upload = multer({
-  //dest: '../front-end/public/images/',
-    dest: '/var/www/lab4.thomaspatrickprojects.net/images',
-    limits: {
+  dest: '../front-end/public/images/',
+  // dest: '/var/www/whatserface.thomaspatrickprojects.net/images',
+  limits: {
     fileSize: 10000000
   }
 });
 
 const mongoose = require('mongoose');
 
-// Create a scheme for items in the museum: a title, description, and path to an image.
-const itemSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  path: String,
+// Create a scheme for inlaws
+const InlawSchema = new mongoose.Schema({
+  name: String,
+  relation: String,
+  birthday: String,
+  hobbies: String,
+  notes: String,
 });
 
 // Create a model for items in the museum.
-const Item = mongoose.model('Item', itemSchema);
+const Inlaw = mongoose.model('Inlaw', InlawSchema);
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
 // the path where the photo is stored in the file system.
@@ -42,41 +44,35 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
 });
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/museum', {
+mongoose.connect('mongodb://localhost:27017/inlaws', {
   useNewUrlParser: true
 });
 
-// Create a new item in the museum: takes a title, description, and path to an image.
+// Create a new inlaw
 app.post('/api/items', async (req, res) => {
-  const item = new Item({
-    title: req.body.title,
-    description: req.body.description,
-    path: req.body.path,
+  const inlaw = new Inlaw(req.body);
+  inlaw.save(function(err, inlaw) {
+    if (err) {
+      return next(err);
+    }
+    res.json(inlaw);
   });
-  try {
-    await item.save();
-    res.send(item);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
 });
 
 // Get a list of all of the items in the museum.
-app.get('/api/items', async (req, res) => {
-  try {
-    let items = await Item.find();
-    res.send(items);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
+app.get('/api/inlaws', function(req, res, next) {
+  Inlaw.find(function(err, inlaws) {
+    if (err) {
+      return next(err);
+    }
+    res.json(inlaws);
+  });
 });
 
 // Delete a specific item.
-app.delete('/api/items/:id', async (req, res) => {
+app.delete('/api/inlaws/:id', async (req, res) => {
   try {
-    await Item.deleteOne({
+    await Inlaw.deleteOne({
       _id: req.params.id
     });
     res.sendStatus(200);
@@ -84,17 +80,20 @@ app.delete('/api/items/:id', async (req, res) => {
     console.log(error);
     res.sendStatus(500);
   }
-});
+})
 
 // Edit a specific item.
-app.put('/api/items/:id', async (req, res) => {
+app.put('/api/inlaws/:id', async (req, res) => {
   try {
-    let item = await Item.findOne({
+    let inlaw = await Inlaw.findOne({
       _id: req.params.id
     });
-    item.title = req.body.title;
-    item.description = req.body.description;
-    await item.save();
+    inlaw.name = req.body.name;
+    inlaw.relation = req.body.relation;
+    inlaw.birthday = req.body.birthday;
+    inlaw.hobbies = req.body.hobbies;
+    inlaw.notes = req.body.notes;
+    await inlaw.save();
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
