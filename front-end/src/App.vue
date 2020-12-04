@@ -40,6 +40,11 @@ body {
   color: #1C454F;
 }
 
+.logo img {
+    max-width:10%;
+    height:auto;
+}
+
 .title {
   margin-top: 5px;
 }
