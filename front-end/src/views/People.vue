@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section class="person-gallery">
-      <div class="person" v-for="item in inlaws" :key="item.id">
+      <div class="person" v-for="inlaw in inlaws" :key="item.id">
         <h3>{{inlaw.name}}</h3>
         <!-- <img :src="item.path" /> -->
         <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
@@ -10,7 +10,7 @@
         <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
       </div>
     </section>
-    <button @click="toggleAdd"></button>
+    <button @click="toggleAdd">Add</button>
     <div v-if="adding">
       <form v-on:submit.prevent="addInlaw">
         <p><strong>Name:</strong></p>
@@ -25,7 +25,7 @@
           <p><strong>Notes:</strong></p>
           <input type="text" v-model="newInlawNotes">
         </div>
-        <button type="submit">Add</button>
+        <button type="submit">Submit</button>
       </form>
       <p v-if="warning">You must include a name!</p>
     </div>

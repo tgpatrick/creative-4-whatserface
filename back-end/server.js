@@ -44,7 +44,7 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
 });
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/inlaws', {
+mongoose.connect('mongodb://localhost/inlaws', {
   useNewUrlParser: true
 });
 
