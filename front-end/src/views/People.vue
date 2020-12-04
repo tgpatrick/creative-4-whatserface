@@ -92,12 +92,12 @@
       },
       async deleteInlaw(inlaw) {
         try {
-          await axois.delete("/api/inlaws" + inlaw._id);
+          await axios.delete("/api/inlaws" + inlaw._id);
           // this.findItem = null;
           this.getAll();
           return true;
         } catch (error) {
-
+          console.log(error);
         }
       },
       toggleAdd() {
