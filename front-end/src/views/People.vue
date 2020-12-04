@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <section class="person-gallery">
-      <div class="person" v-for="item in items" :key="item.id">
+      <div class="person" v-for="item in inlaws" :key="item.id">
         <h3>{{inlaw.name}}</h3>
         <!-- <img :src="item.path" /> -->
         <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
