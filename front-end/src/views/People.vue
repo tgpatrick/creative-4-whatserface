@@ -90,7 +90,7 @@
         this.newInlawHobbies = '';
         this.newInlawNotes = '';
       },
-      deleteInlaw(inlaw) {
+      async deleteInlaw(inlaw) {
         try {
           await axois.delete("/api/inlaws" + inlaw._id);
           // this.findItem = null;
