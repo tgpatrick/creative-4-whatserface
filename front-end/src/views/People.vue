@@ -1,13 +1,14 @@
 <template>
   <div class="home">
     <section class="person-gallery">
-      <div class="person" v-for="inlaw in inlaws" :key="inlaw.name">
+      <div class="person" v-for="inlaw in inlaws" :key="inlaw._id">
         <h3>{{inlaw.name}}</h3>
         <!-- <img :src="item.path" /> -->
         <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
         <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
         <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
         <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
+        <button @click="deleteInlaw">Delete</button>
       </div>
     </section>
     <button @click="toggleAdd">Add</button>
@@ -90,9 +91,13 @@
         this.newInlawNotes = '';
       },
       deleteInlaw(inlaw) {
-        const index = this.inlaws.indexOf(inlaw);
-        if (index > -1) {
-          this.inlaws.splice(index, 1);
+        try {
+          await axois.delete("/api/inlaws" + inlaw._id);
+          // this.findItem = null;
+          this.getAll();
+          return true;
+        } catch (error) {
+
         }
       },
       toggleAdd() {
