@@ -50,7 +50,7 @@ mongoose.connect('mongodb://localhost/inlaws', {
 });
 
 // Create a new inlaw
-app.post('/api/inlaws', async (req, res) => {
+app.post('/api/inlaws/', async (req, res) => {
   const inlaw = new Inlaw({
     name: req.body.name,
     relation: req.body.relation,
@@ -67,7 +67,7 @@ app.post('/api/inlaws', async (req, res) => {
 });
 
 // Get a list of all of the items in the museum.
-app.get('/api/inlaws', function(req, res, next) {
+app.get('/api/inlaws/', function(req, res, next) {
   Inlaw.find(function(err, inlaws) {
     if (err) {
       console.log(err)
