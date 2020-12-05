@@ -8,6 +8,7 @@
     </router-link>
     <div class="title">
       <h1>Whatserface</h1>
+      <p>Because marriage is hard enough!</p>
     </div>
   </div>
   <div class="links">

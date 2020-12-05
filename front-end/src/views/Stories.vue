@@ -1,29 +1,27 @@
 <template>
   <div>
     <h1 class="title">Stories</h1>
-    <section class="person-gallery">
-      <div class="person" v-for="story in stories" :key="story._id">
-        <!-- <img :src="item.path" /> -->
-        <div v-if="!story.edit">
-          <h3>{{story.title}}</h3>
-          <p> <strong>People:</strong> {{story.people}} </p>
-          <p> {{story.story}} </p>
-          <div class="buttons">
-            <button @click="deleteStory(story)">Delete</button>
-            <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
-          </div>
-        </div>
-        <div v-else>
-          <p><strong>Title:</strong></p>
-          <input type="text" v-model="newStoryTitle">
-          <p><strong>People:</strong></p>
-          <input type="text" v-model="newStoryPeople">
-          <p><strong>Story:</strong></p>
-          <textarea type="text" v-model="newStory"></textarea>
-          <button v-if="story.edit" @click="editStory(story)">Save</button>
+    <div class="story" v-for="story in stories" :key="story._id">
+      <!-- <img :src="item.path" /> -->
+      <div v-if="!story.edit">
+        <h3>{{story.title}}</h3>
+        <p> <strong>People:</strong> {{story.people}} </p>
+        <p> {{story.story}} </p>
+        <div class="buttons">
+          <button @click="deleteStory(story)">Delete</button>
+          <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
         </div>
       </div>
-    </section>
+      <div v-else>
+        <p><strong>Title:</strong></p>
+        <input type="text" v-model="newStoryTitle">
+        <p><strong>People:</strong></p>
+        <input type="text" v-model="newStoryPeople">
+        <p><strong>Story:</strong></p>
+        <textarea type="text" v-model="newStory"></textarea>
+        <button v-if="story.edit" @click="editStory(story)">Save</button>
+      </div>
+    </div>
     <div class="buttons">
       <button class="addButton" v-if="!adding" @click="toggleAdd">Add a Story</button>
       <button class="addButton" v-else @click="toggleAdd">Done</button>
@@ -166,6 +164,7 @@
   .edit {
     display: flex;
     justify-content: center;
+    margin-top: 10px;
   }
 
   .circle {
