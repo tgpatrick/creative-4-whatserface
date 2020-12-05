@@ -10,8 +10,12 @@
       <h1>Whatserface</h1>
     </div>
   </div>
-  <router-link to="/people">People</router-link>
-  <router-link to="/stories">Stories</router-link>
+  <router-link to="/">
+    <p class="pageLink">People</p>
+  </router-link>
+  <router-link to="/stories">
+    <p class="pageLink">Stories</p>
+  </router-link>
   <div class="content">
     <router-view />
   </div>
@@ -53,6 +57,12 @@ body {
 
 .title h1 {
   font-size: 30px;
+}
+
+.pageLink {
+  margin: 10px;
+  background-color: #306d77;
+  border-radius: 10px;
 }
 
 .content {
