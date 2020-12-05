@@ -149,7 +149,7 @@
   }
 
   .storyArea {
-    width: 70%;
+    width: 100%;
   }
 
   .heading {
