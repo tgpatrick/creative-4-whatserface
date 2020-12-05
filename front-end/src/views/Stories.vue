@@ -150,7 +150,7 @@
 
   .storyArea {
     width: 100%;
-    height: 25%;
+    height: 50%;
   }
 
   .heading {
@@ -199,7 +199,7 @@
     flex-direction: column;
   }
 
-  .person button {
+  .story button {
     margin: 5px;
   }
 
