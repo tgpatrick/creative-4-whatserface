@@ -146,25 +146,25 @@
       async editInlaw(inlaw) {
         inlaw.edit = false;
         this.editing = false;
-        try {
-          await axios.put("/api/inlaws/" + inlaw._id, {
-            name: this.newInlawName,
-            relation: this.newInlawRelation,
-            birthday: this.newInlawBirthday,
-            hobbies: this.newInlawHobbies,
-            notes: this.newInlawNotes,
-          });
-          this.newInlawName = '';
-          this.newInlawRelation = '';
-          this.newInlawBirthday = '';
-          this.newInlawHobbies = '';
-          this.newInlawNotes = '';
-          this.getAll();
-          return true;
-        } catch (err) {
-          const error = err;
-          // console.log(error);
-        }
+        // try {
+        await axios.put("/api/inlaws/" + inlaw._id, {
+          name: this.newInlawName,
+          relation: this.newInlawRelation,
+          birthday: this.newInlawBirthday,
+          hobbies: this.newInlawHobbies,
+          notes: this.newInlawNotes,
+        });
+        this.newInlawName = '';
+        this.newInlawRelation = '';
+        this.newInlawBirthday = '';
+        this.newInlawHobbies = '';
+        this.newInlawNotes = '';
+        this.getAll();
+        return true;
+        // } catch (err) {
+        //   const error = err;
+        //   // console.log(error);
+        // }
       },
       toggleAdd() {
         if (this.adding) {

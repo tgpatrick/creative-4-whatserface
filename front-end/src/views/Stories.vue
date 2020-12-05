@@ -65,14 +65,14 @@
     methods: {
       async getAll() {
         var url = "/api/stories";
-        try {
-          let response = await axios.get(url);
-          this.stories = response.data;
-          return true;
-        } catch (err) {
-          const error = err;
-          // console.log(error);
-        }
+        // try {
+        let response = await axios.get(url);
+        this.stories = response.data;
+        return true;
+        // } catch (err) {
+        //   const error = err;
+        //   // console.log(error);
+        // }
       },
       addStory() {
         var url = "/api/stories/";
