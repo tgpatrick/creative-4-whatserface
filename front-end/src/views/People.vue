@@ -46,7 +46,7 @@
             <p><strong>Hobbies:</strong></p>
             <input type="text" v-model="newInlawHobbies">
             <p><strong>Notes:</strong></p>
-            <input type="text" v-model="newInlawNotes">
+            <textarea type="text" v-model="newInlawNotes"></textarea>
           </div>
           <button type="submit">Submit</button>
         </form>

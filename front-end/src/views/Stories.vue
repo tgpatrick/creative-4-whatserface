@@ -36,7 +36,7 @@
             <p><strong>People:</strong></p>
             <input type="text" v-model="newStoryPeople">
             <p><strong>Story:</strong></p>
-            <input type="text" v-model="newStory">
+            <textarea type="text" v-model="newStory"></textarea>
           </div>
           <button type="submit">Submit</button>
         </form>
