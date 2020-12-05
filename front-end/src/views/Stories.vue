@@ -98,7 +98,7 @@
           console.log(error);
         }
       },
-      async editInlaw(story) {
+      async editStory(story) {
         story.edit = false;
         this.editing = false;
         try {
