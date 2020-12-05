@@ -8,7 +8,7 @@
         <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
         <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
         <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
-        <button @click="deleteInlaw">Delete</button>
+        <button @click="deleteInlaw(inlaw)">Delete</button>
       </div>
     </section>
     <button @click="toggleAdd">Add</button>
@@ -54,6 +54,24 @@
       this.getAll();
     },
     methods: {
+      fileChanged(event) {
+        this.file = event.target.files[0]
+      },
+      async upload() {
+        try {
+          const formData = new FormData();
+          formData.append('photo', this.file, this.file.name)
+          let r1 = await axios.post('/api/photos', formData);
+          let r2 = await axios.post('/api/items', {
+            title: this.title,
+            description: this.description,
+            path: r1.data.path
+          });
+          this.addItem = r2.data;
+        } catch (error) {
+          //console.log(error);
+        }
+      },
       async getAll() {
         var url = "/api/inlaws";
         try {
@@ -128,7 +146,7 @@
     column-gap: 1.5em;
   }
 
-  .pserson {
+  .person {
     margin: 0 0 1.5em;
     display: inline-block;
     width: 100%;

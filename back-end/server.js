@@ -74,7 +74,7 @@ app.get('/api/inlaws', function(req, res, next) {
 app.delete('/api/inlaws/:id', async (req, res) => {
   try {
     await Inlaw.deleteOne({
-      _id: req.params._id
+      _id: req.params.id
     });
     res.sendStatus(200);
   } catch (error) {
