@@ -10,11 +10,13 @@
       <h1>Whatserface</h1>
     </div>
   </div>
+  <router-link to="/people">People</router-link>
+  <router-link to="/stories">Stories</router-link>
   <div class="content">
     <router-view />
   </div>
   <div class="footer">
-    <router-link to="/admin">Stories</router-link>
+    <a href="https://github.com/tgpatrick/creative-4-whatserface.git">Github Link</a>
   </div>
 </div>
 </template>
