@@ -47,8 +47,7 @@
     data() {
       return {
         adding: false,
-        editing,
-        false,
+        editing: false,
         newStoryTitle: "",
         newStoryPeople: "",
         newStory: "null",
