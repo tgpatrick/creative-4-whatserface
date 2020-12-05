@@ -86,9 +86,9 @@
           .then(response => {
             this.stories.push(response.data);
           })
-          .catch(error => {
-            // console.log(error);
-          })
+        // .catch(error => {
+        // console.log(error);
+        // })
 
         this.newStoryTitle = '';
         this.newStoryPeople = '';
