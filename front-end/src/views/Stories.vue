@@ -18,7 +18,7 @@
         <p><strong>People:</strong></p>
         <input type="text" v-model="newStoryPeople">
         <p><strong>Story:</strong></p>
-        <textarea type="text" v-model="newStory"></textarea>
+        <textarea class="storyArea" type="text" v-model="newStory"></textarea>
         <button v-if="story.edit" @click="editStory(story)">Save</button>
       </div>
     </div>
@@ -35,7 +35,7 @@
             <p><strong>People:</strong></p>
             <input type="text" v-model="newStoryPeople">
             <p><strong>Story:</strong></p>
-            <textarea type="text" v-model="newStory"></textarea>
+            <textarea class="storyArea" type="text" v-model="newStory"></textarea>
           </div>
           <button type="submit">Submit</button>
         </form>
@@ -146,6 +146,10 @@
 
   .story {
     margin-bottom: 20px;
+  }
+
+  .storyArea {
+    width: 70%;
   }
 
   .heading {
