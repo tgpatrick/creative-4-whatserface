@@ -12,10 +12,11 @@
           <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
         </div>
         <div v-else>
+          <p><strong>Title:</strong></p>
           <input type="text" v-model="newStoryTitle">
           <p><strong>People:</strong></p>
           <input type="text" v-model="newStoryPeople">
-          <input type="text" v-model="newStory">
+          <textarea type="text" v-model="newStory"></textarea>
           <button v-if="story.edit" @click="editStory(story)">Save</button>
         </div>
       </div>

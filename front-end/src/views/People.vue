@@ -10,8 +10,10 @@
           <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
           <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
           <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
-          <button @click="deleteInlaw(inlaw)">Delete</button>
-          <button v-if="!editing" @click="toggleEdit(inlaw)">Edit</button>
+          <div class="buttons">
+            <button @click="deleteInlaw(inlaw)">Delete</button>
+            <button v-if="!editing" @click="toggleEdit(inlaw)">Edit</button>
+          </div>
         </div>
         <div v-else>
           <input type="text" v-model="newInlawName">
@@ -22,7 +24,7 @@
           <p><strong>Hobbies:</strong></p>
           <input type="text" v-model="newInlawHobbies">
           <p><strong>Notes:</strong></p>
-          <input type="text" v-model="newInlawNotes">
+          <textarea type="text" v-model="newInlawNotes"></textarea>
           <button v-if="inlaw.edit" @click="editInlaw(inlaw)">Save</button>
         </div>
       </div>
@@ -207,6 +209,10 @@
 
   .person img {
     width: 100%;
+  }
+
+  .person button {
+    margin: 5px;
   }
 
   /* Masonry on large screens */
