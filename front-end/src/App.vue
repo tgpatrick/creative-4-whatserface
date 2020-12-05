@@ -77,7 +77,7 @@ body {
   text-align: center;
   background-color: #306d77;
   border-radius: 10px;
-  box-shadow: 10px 10px 10px 10px grey;
+  box-shadow: 3px 3px 3px 3px grey;
 }
 
 .content {

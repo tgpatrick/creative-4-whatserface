@@ -11,8 +11,8 @@ const routes = [{
     component: People
   },
   {
-    path: '/admin',
-    name: 'admin',
+    path: '/stories',
+    name: 'stories',
     component: Stories
   }
 ]
