@@ -161,8 +161,9 @@
           this.newInlawNotes = '';
           this.getAll();
           return true;
-        } catch (error) {
-          //// console.log(error);
+        } catch (err) {
+          const error = err;
+          // console.log(error);
         }
       },
       toggleAdd() {
