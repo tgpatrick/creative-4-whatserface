@@ -60,9 +60,9 @@ body {
 }
 
 .pageLink {
-  margin: 10px;
-  width: 25px;
-  height: 10px;
+  padding: 10px;
+  width: 50px;
+  height: 25px;
   color: white;
   background-color: #306d77;
   border-radius: 10px;
