@@ -44,6 +44,8 @@ body {
 /* Header */
 .header {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   padding: 10px 100px 0px 100px;
   background-color: #2da691;
   color: #1C454F;

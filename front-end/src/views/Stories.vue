@@ -144,9 +144,8 @@
     font-size: 2em;
   }
 
-  .image h2 {
-    font-style: italic;
-    font-size: 1em;
+  .story {
+    margin-bottom: 10px;
   }
 
   .heading {
