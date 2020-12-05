@@ -51,7 +51,13 @@ mongoose.connect('mongodb://localhost/inlaws', {
 
 // Create a new inlaw
 app.post('/api/inlaws', async (req, res) => {
-  const inlaw = new Inlaw(req.body);
+  const inlaw = new Inlaw({
+    name: req.body.name,
+    relation: req.body.relation,
+    birthday: req.body.birthday,
+    hobbies: req.body.hobbies,
+    notes: req.body.notes
+  });
   inlaw.save(function(err, inlaw) {
     if (err) {
       return next(err);
@@ -72,12 +78,10 @@ app.get('/api/inlaws', function(req, res, next) {
 
 // Delete a specific item.
 app.delete('/api/inlaws/:id', async (req, res) => {
-  console.log("in axios delete")
   try {
     await Inlaw.deleteOne({
       _id: req.params.id
     });
-    console.log("ending axios delete")
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
