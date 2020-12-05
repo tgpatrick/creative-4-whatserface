@@ -52,6 +52,7 @@ mongoose.connect('mongodb://localhost/inlaws', {
 // Create a new inlaw
 app.post('/api/inlaws/', async (req, res) => {
   const inlaw = new Inlaw({
+    _id: ObjectID(),
     name: req.body.name,
     relation: req.body.relation,
     birthday: req.body.birthday,
