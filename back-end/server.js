@@ -21,7 +21,6 @@ const mongoose = require('mongoose');
 
 // Create a scheme for inlaws
 const InlawSchema = new mongoose.Schema({
-  _id: String,
   name: String,
   relation: String,
   birthday: String,
@@ -52,7 +51,6 @@ mongoose.connect('mongodb://localhost/inlaws', {
 // Create a new inlaw
 app.post('/api/inlaws/', async (req, res) => {
   const inlaw = new Inlaw({
-    _id: ObjectID(),
     name: req.body.name,
     relation: req.body.relation,
     birthday: req.body.birthday,
