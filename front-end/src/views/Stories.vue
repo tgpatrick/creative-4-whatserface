@@ -145,7 +145,7 @@
   }
 
   .story {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .heading {
