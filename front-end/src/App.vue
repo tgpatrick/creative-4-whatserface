@@ -8,7 +8,7 @@
     </router-link>
     <div class="title">
       <h1>Whatserface</h1>
-      <p><em>Because marriage is hard enough!</em></p>
+      <p><em><strong>Remebering your inlaws for you, because marriage is hard enough!</strong></em></p>
     </div>
   </div>
   <div class="links">
@@ -58,7 +58,7 @@ body {
 
 .title {
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .title h1 {
