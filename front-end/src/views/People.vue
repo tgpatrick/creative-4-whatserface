@@ -26,7 +26,8 @@
         </div>
       </div>
     </section>
-    <button @click="toggleAdd">Add</button>
+    <button v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
+    <button v-else @click="toggleAdd">Done</button>
     <div v-if="adding">
       <div class="add">
         <form v-on:submit.prevent="addInlaw">
@@ -132,7 +133,6 @@
       async deleteInlaw(inlaw) {
         try {
           await axios.delete("/api/inlaws/" + inlaw._id);
-          // this.findItem = null;
           this.getAll();
           return true;
         } catch (error) {
@@ -155,7 +155,7 @@
           this.newInlawBirthday = '';
           this.newInlawHobbies = '';
           this.newInlawNotes = '';
-          this.getItems();
+          this.getAll();
           return true;
         } catch (error) {
           //console.log(error);
@@ -176,6 +176,7 @@
         this.newInlawHobbies = inlaw.hobbies;
         this.newInlawNotes = inlaw.notes;
         inlaw.edit = true;
+        this.adding = false;
         this.editing = true;
       }
     }
