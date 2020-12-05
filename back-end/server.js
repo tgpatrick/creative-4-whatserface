@@ -62,7 +62,7 @@ app.post('/api/inlaws/', async (req, res) => {
     await inlaw.save();
     res.send(inlaw);
   } catch (error) {
-    conosle.log(error);
+    console.log(error);
     res.sendStatus(500);
   }
   // inlaw.save(function(err, inlaw) {
