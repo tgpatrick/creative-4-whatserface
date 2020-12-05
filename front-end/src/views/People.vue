@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1>People</h1>
     <section class="person-gallery">
       <div class="person" v-for="inlaw in inlaws" :key="inlaw._id">
         <!-- <img :src="item.path" /> -->
@@ -112,7 +113,6 @@
             notes: this.newInlawNotes,
             edit: false
           };
-          console.log(newInlaw);
           axios.post(url, newInlaw)
             .then(response => {
               this.inlaws.push(response.data);

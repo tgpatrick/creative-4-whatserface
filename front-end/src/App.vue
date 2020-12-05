@@ -72,12 +72,12 @@ body {
   padding: 10px;
   margin: 10px;
   width: 60px;
-  height: 25px;
+  height: 20px;
   color: white;
   text-align: center;
   background-color: #306d77;
   border-radius: 10px;
-  box-shadow: 5px;
+  box-shadow: 10px 10px 10px 10px grey;
 }
 
 .content {

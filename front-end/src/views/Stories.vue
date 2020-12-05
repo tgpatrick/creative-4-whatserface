@@ -1,167 +1,211 @@
 <template>
-<div>
-  <h1>The Stories Page!</h1>
-</div>
+  <div>
+    <h1>Stories</h1>
+    <section class="person-gallery">
+      <div class="person" v-for="story in stories" :key="story._id">
+        <!-- <img :src="item.path" /> -->
+        <div v-if="!story.edit">
+          <h3>{{story.title}}</h3>
+          <p> <strong>People:</strong> {{story.people}} </p>
+          <p> {{story.story}} </p>
+          <button @click="deleteStory(story)">Delete</button>
+          <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
+        </div>
+        <div v-else>
+          <input type="text" v-model="newStoryTitle">
+          <p><strong>People:</strong></p>
+          <input type="text" v-model="newStoryPeople">
+          <input type="text" v-model="newStory">
+          <button v-if="story.edit" @click="editStory(story)">Save</button>
+        </div>
+      </div>
+    </section>
+    <button v-if="!adding" @click="toggleAdd">Add a Story</button>
+    <button v-else @click="toggleAdd">Done</button>
+    <div v-if="adding">
+      <div class="add">
+        <form v-on:submit.prevent="addStory">
+          <p><strong>Title:</strong></p>
+          <input type="text" v-model="newStoryTitle">
+          <div class="formSection">
+            <p><strong>People:</strong></p>
+            <input type="text" v-model="newStoryPeople">
+            <p><strong>Story:</strong></p>
+            <input type="text" v-model="newStory">
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
 </template>
 
 <script>
-import axios from 'axios';
+  import axios from 'axios';
 
-export default {
-  name: 'Admin',
-  data() {
-    return {
-      title: "",
-      description: "",
-      file: null,
-      addItem: null,
-      items: [],
-      findTitle: "",
-      findItem: null,
+  export default {
+    name: 'Stories',
+    data() {
+      return {
+        adding: false,
+        editing,
+        false,
+        newStoryTitle: "",
+        newStoryPeople: "",
+        newStory: "null",
+        stories: [],
+      }
+    },
+    created() {
+      this.getAll();
+    },
+    methods: {
+      async getAll() {
+        var url = "/api/stories";
+        try {
+          let response = await axios.get(url);
+          this.stories = response.data;
+          return true;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      addInlaw() {
+        var url = "/api/stories/";
+        const newStory = {
+          title: this.newStoryTitle,
+          people: this.newStoryPeople,
+          story: this.newStory,
+          edit: false
+        };
+        axios.post(url, newStory)
+          .then(response => {
+            this.stories.push(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+
+        this.newStoryTitle = '';
+        this.newStoryPeople = '';
+        this.newStory = '';
+      },
+      async deleteStory(story) {
+        try {
+          await axios.delete("/api/stories/" + story._id);
+          this.getAll();
+          return true;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      async editInlaw(story) {
+        story.edit = false;
+        this.editing = false;
+        try {
+          await axios.put("/api/stories/" + story._id, {
+            title: this.newStoryTitle,
+            people: this.newStoryPeople,
+            story: this.newStory,
+          });
+          this.newStoryTitle = '';
+          this.newStoryPeople = '';
+          this.newStory = '';
+          this.getAll();
+          return true;
+        } catch (error) {
+          //console.log(error);
+        }
+      },
+      toggleAdd() {
+        if (this.adding) {
+          this.adding = false;
+        } else {
+          this.adding = true;
+        }
+      },
+      toggleEdit(story) {
+        this.newStoryTitle = story.title;
+        this.newStoryPeople = story.people;
+        this.newStory = story.story;
+        story.edit = true;
+        this.adding = false;
+        this.editing = true;
+      }
     }
-  },
-  computed: {
-    suggestions() {
-      if (this.findTitle == "") {
-        return []
-      }
-      let items = this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
-      return items.sort((a, b) => a.title > b.title);
-    }
-  },
-  created() {
-    this.getItems();
-  },
-  methods: {
-    fileChanged(event) {
-      this.file = event.target.files[0]
-    },
-    async upload() {
-      try {
-        const formData = new FormData();
-        formData.append('photo', this.file, this.file.name)
-        let r1 = await axios.post('/api/photos', formData);
-        let r2 = await axios.post('/api/items', {
-          title: this.title,
-          description: this.description,
-          path: r1.data.path
-        });
-        this.addItem = r2.data;
-      } catch (error) {
-        //console.log(error);
-      }
-    },
-    async getItems() {
-      try {
-        let response = await axios.get("/api/items");
-        this.items = response.data;
-        return true;
-      } catch (error) {
-        //console.log(error);
-      }
-    },
-    selectItem(item) {
-      this.findTitle = "";
-      this.findItem = item;
-    },
-    async deleteItem(item) {
-      try {
-        await axios.delete("/api/items/" + item._id);
-        this.findItem = null;
-        this.getItems();
-        return true;
-      } catch (error) {
-        //console.log(error);
-      }
-    },
-    async editItem(item) {
-      try {
-        await axios.put("/api/items/" + item._id, {
-          title: this.findItem.title,
-          description: this.findItem.description,
-        });
-        this.findItem = null;
-        this.getItems();
-        return true;
-      } catch (error) {
-        //console.log(error);
-      }
-    },
   }
-}
 </script>
 
 <style scoped>
-.image h2 {
-  font-style: italic;
-  font-size: 1em;
-}
+  .image h2 {
+    font-style: italic;
+    font-size: 1em;
+  }
 
-.heading {
-  display: flex;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
+  .heading {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 
-.heading h2 {
-  margin-top: 8px;
-  margin-left: 10px;
-}
+  .heading h2 {
+    margin-top: 8px;
+    margin-left: 10px;
+  }
 
-.add,
-.edit {
-  display: flex;
-}
+  .add,
+  .edit {
+    display: flex;
+  }
 
-.circle {
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  padding: 8px;
-  background: #333;
-  color: #fff;
-  text-align: center
-}
+  .circle {
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    padding: 8px;
+    background: #333;
+    color: #fff;
+    text-align: center
+  }
 
-/* Form */
-input,
-textarea,
-select,
-button {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
-}
+  /* Form */
+  input,
+  textarea,
+  select,
+  button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+  }
 
-.form {
-  margin-right: 50px;
-}
+  .form {
+    margin-right: 50px;
+  }
 
-.info {
-  display: flex;
-  flex-direction: column;
-}
+  .info {
+    display: flex;
+    flex-direction: column;
+  }
 
-/* Uploaded images */
-.upload h2 {
-  margin: 0px;
-}
+  /* Uploaded images */
+  .upload h2 {
+    margin: 0px;
+  }
 
-.upload img {
-  max-width: 300px;
-}
+  .upload img {
+    max-width: 300px;
+  }
 
-/* Suggestions */
-.suggestions {
-  width: 200px;
-  border: 1px solid #ccc;
-}
+  /* Suggestions */
+  .suggestions {
+    width: 200px;
+    border: 1px solid #ccc;
+  }
 
-.suggestion {
-  min-height: 20px;
-}
+  .suggestion {
+    min-height: 20px;
+  }
 
-.suggestion:hover {
-  background-color: #5BDEFF;
-  color: #fff;
-}
+  .suggestion:hover {
+    background-color: #5BDEFF;
+    color: #fff;
+  }
 </style>
