@@ -31,7 +31,7 @@ const InlawSchema = new mongoose.Schema({
 const StorySchema = new mongoose.Schema({
   title: String,
   people: String,
-  story: String;
+  story: String,
 });
 
 // Create a model for items in the museum.
