@@ -60,7 +60,7 @@ app.post('/api/inlaws/', async (req, res) => {
   });
   inlaw.save(function(err, inlaw) {
     if (err) {
-      return next(err);
+      console.log(err)
     }
     res.json(inlaw);
   });
