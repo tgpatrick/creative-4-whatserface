@@ -51,7 +51,7 @@
         editing: false,
         newStoryTitle: "",
         newStoryPeople: "",
-        newStory: "null",
+        newStory: "",
         stories: [],
       }
     },
@@ -69,7 +69,7 @@
           console.log(error);
         }
       },
-      addInlaw() {
+      addStory() {
         var url = "/api/stories/";
         const newStory = {
           title: this.newStoryTitle,
