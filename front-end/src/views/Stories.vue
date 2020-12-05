@@ -150,6 +150,7 @@
 
   .storyArea {
     width: 100%;
+    height: 25%;
   }
 
   .heading {
