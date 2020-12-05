@@ -197,7 +197,6 @@
   }
 
   .buttons {
-    height: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -207,7 +206,7 @@
     padding: 10px;
     margin: 0 auto;
     width: 120px;
-    height: 25px;
+    height: 50px;
     color: white;
     text-align: center;
     background-color: #306d77;
