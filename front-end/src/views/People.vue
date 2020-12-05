@@ -2,17 +2,18 @@
   <div class="home">
     <section class="person-gallery">
       <div class="person" v-for="inlaw in inlaws" :key="inlaw._id">
-        <h3>{{inlaw.name}}</h3>
         <!-- <img :src="item.path" /> -->
         <div v-if="!inlaw.edit">
+          <h3>{{inlaw.name}}</h3>
           <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
           <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
           <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
           <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
           <button @click="deleteInlaw(inlaw)">Delete</button>
-          <button @click="toggleEdit(inlaw)">Edit</button>
+          <button v-if="!this.editing" @click="toggleEdit(inlaw)">Edit</button>
         </div>
         <div v-else>
+          <input type="text" v-model="newInlawName">
           <p><strong>Relation:</strong></p>
           <input type="text" v-model="newInlawRelation">
           <p><strong>Birthday:</strong></p>
@@ -57,6 +58,7 @@
     data() {
       return {
         adding: false,
+        editing: false,
         newInlawName: "",
         newInlawRelation: "",
         newInlawBirthday: "",
@@ -138,6 +140,8 @@
         }
       },
       async editInlaw(inlaw) {
+        inlaw.edit = false;
+        this.editing = false;
         try {
           await axios.put("/api/inlaws/" + inlaw._id, {
             name: this.newInlawName,
@@ -171,7 +175,8 @@
         this.newInlawBirthday = inlaw.birthday;
         this.newInlawHobbies = inlaw.hobbies;
         this.newInlawNotes = inlaw.notes;
-        inlaw.edit = true
+        inlaw.edit = true;
+        this.editing = true;
       }
     }
   }
