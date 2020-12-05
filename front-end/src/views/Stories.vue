@@ -21,7 +21,7 @@
         </div>
       </div>
     </section>
-    <button v-if="!adding" @click="toggleAdd">Add a Story</button>
+    <button class="addButton" v-if="!adding" @click="toggleAdd">Add a Story</button>
     <button v-else @click="toggleAdd">Done</button>
     <div v-if="adding">
       <div class="add">

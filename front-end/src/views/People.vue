@@ -29,7 +29,7 @@
         </div>
       </div>
     </section>
-    <button v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
+    <button class="addButton" v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
     <button v-else @click="toggleAdd">Done</button>
     <div v-if="adding">
       <div class="add">
@@ -213,6 +213,24 @@
 
   .person button {
     margin: 5px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .addButton {
+    padding: 10px;
+    margin: 10px;
+    width: 60px;
+    height: 20px;
+    color: white;
+    text-align: center;
+    background-color: #306d77;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px grey;
   }
 
   /* Masonry on large screens */
