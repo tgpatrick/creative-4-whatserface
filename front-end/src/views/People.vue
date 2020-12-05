@@ -110,6 +110,7 @@
       },
       async deleteInlaw(inlaw) {
         try {
+          console.log(inlaw)
           await axios.delete("/api/inlaws/" + inlaw._id);
           // this.findItem = null;
           this.getAll();
