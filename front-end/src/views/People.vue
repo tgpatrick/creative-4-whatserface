@@ -84,14 +84,16 @@
       },
       addInlaw() {
         if (this.newInlawName.length > 0) {
-          var url = "/api/inlaws";
-          axios.post(url, {
-              name: this.newInlawName,
-              relation: this.newInlawRelation,
-              birthday: this.newInlawBirthday,
-              hobbies: this.newInlawHobbies,
-              notes: this.newInlawNotes
-            })
+          var url = "/api/inlaws/";
+          const newInlaw = {
+            name: this.newInlawName,
+            relation: this.newInlawRelation,
+            birthday: this.newInlawBirthday,
+            hobbies: this.newInlawHobbies,
+            notes: this.newInlawNotes
+          };
+          console.log(newInlaw);
+          axios.post(url, newInlaw)
             .then(response => {
               this.inlaws.push(response.data);
             })
