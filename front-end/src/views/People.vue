@@ -10,7 +10,7 @@
           <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
           <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
           <button @click="deleteInlaw(inlaw)">Delete</button>
-          <button v-if="!this.editing" @click="toggleEdit(inlaw)">Edit</button>
+          <button v-if="!editing" @click="toggleEdit(inlaw)">Edit</button>
         </div>
         <div v-else>
           <input type="text" v-model="newInlawName">
