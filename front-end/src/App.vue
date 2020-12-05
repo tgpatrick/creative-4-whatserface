@@ -62,13 +62,14 @@ body {
 }
 
 .links {
-  margin: auto;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .pageLink {
   padding: 10px;
+  margin: 10px;
   width: 60px;
   height: 25px;
   color: white;
