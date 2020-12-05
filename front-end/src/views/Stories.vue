@@ -70,7 +70,7 @@
           this.stories = response.data;
           return true;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
       addStory() {
@@ -86,7 +86,7 @@
             this.stories.push(response.data);
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
           })
 
         this.newStoryTitle = '';
@@ -99,7 +99,7 @@
           this.getAll();
           return true;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
       async editStory(story) {
@@ -117,7 +117,7 @@
           this.getAll();
           return true;
         } catch (error) {
-          //console.log(error);
+          //// console.log(error);
         }
       },
       toggleAdd() {

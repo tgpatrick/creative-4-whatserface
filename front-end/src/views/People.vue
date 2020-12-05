@@ -93,7 +93,7 @@
           });
           this.addItem = r2.data;
         } catch (error) {
-          //console.log(error);
+          //// console.log(error);
         }
       },
       async getAll() {
@@ -103,7 +103,7 @@
           this.inlaws = response.data;
           return true;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
       addInlaw() {
@@ -122,7 +122,7 @@
               this.inlaws.push(response.data);
             })
             .catch(error => {
-              console.log(error);
+              // console.log(error);
             })
           this.warning = false;
         } else {
@@ -140,7 +140,7 @@
           this.getAll();
           return true;
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
       async editInlaw(inlaw) {
@@ -162,7 +162,7 @@
           this.getAll();
           return true;
         } catch (error) {
-          //console.log(error);
+          //// console.log(error);
         }
       },
       toggleAdd() {

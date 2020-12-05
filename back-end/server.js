@@ -68,7 +68,7 @@ app.post('/api/inlaws/', async (req, res) => {
     await inlaw.save();
     res.send(inlaw);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
@@ -77,7 +77,7 @@ app.post('/api/inlaws/', async (req, res) => {
 app.get('/api/inlaws/', function(req, res, next) {
   Inlaw.find(function(err, inlaws) {
     if (err) {
-      console.log(err)
+      // console.log(err)
     }
     res.json(inlaws);
   });
@@ -91,7 +91,7 @@ app.delete('/api/inlaws/:id', async (req, res) => {
     });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 })
@@ -110,7 +110,7 @@ app.put('/api/inlaws/:id', async (req, res) => {
     await inlaw.save();
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
@@ -126,7 +126,7 @@ app.post('/api/stories/', async (req, res) => {
     await story.save();
     res.send(story);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
@@ -135,7 +135,7 @@ app.post('/api/stories/', async (req, res) => {
 app.get('/api/stories/', function(req, res, next) {
   Story.find(function(err, stories) {
     if (err) {
-      console.log(err)
+      // console.log(err)
     }
     res.json(stories);
   });
@@ -149,7 +149,7 @@ app.delete('/api/stories/:id', async (req, res) => {
     });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 })
@@ -166,9 +166,9 @@ app.put('/api/stories/:id', async (req, res) => {
     await story.save();
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(3000, () => // console.log('Server listening on port 3000!'));
