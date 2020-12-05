@@ -70,7 +70,7 @@ app.post('/api/inlaws', async (req, res) => {
 app.get('/api/inlaws', function(req, res, next) {
   Inlaw.find(function(err, inlaws) {
     if (err) {
-      return next(err);
+      console.log(err)
     }
     res.json(inlaws);
   });
