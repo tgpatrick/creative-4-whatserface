@@ -160,6 +160,7 @@
   .add,
   .edit {
     display: flex;
+    justify-content: center;
   }
 
   .circle {
@@ -204,7 +205,7 @@
     padding: 10px;
     margin: 0 auto;
     width: 120px;
-    height: 15px;
+    height: 25px;
     color: white;
     text-align: center;
     background-color: #306d77;

@@ -217,6 +217,12 @@
     margin: 5px;
   }
 
+  .add,
+  .edit {
+    display: flex;
+    justify-content: center;
+  }
+
   .buttons {
     display: flex;
     flex-direction: row;
