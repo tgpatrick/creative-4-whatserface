@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Stories</h1>
+    <h1 class="title">Stories</h1>
     <section class="person-gallery">
       <div class="person" v-for="story in stories" :key="story._id">
         <!-- <img :src="item.path" /> -->
@@ -142,6 +142,10 @@
 </script>
 
 <style scoped>
+  .title {
+    font-size: 2em;
+  }
+
   .image h2 {
     font-style: italic;
     font-size: 1em;

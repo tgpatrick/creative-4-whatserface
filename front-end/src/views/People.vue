@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>People</h1>
+    <h1 class="title">People</h1>
     <section class="person-gallery">
       <div class="person" v-for="inlaw in inlaws" :key="inlaw._id">
         <!-- <img :src="item.path" /> -->
@@ -188,6 +188,10 @@
 </script>
 
 <style scoped>
+  .title {
+    font-size: 2em;
+  }
+
   .person h2 {
     font-style: italic;
   }
@@ -232,6 +236,7 @@
   .addButton {
     padding: 10px;
     margin: 0 auto;
+    margin-top: 10px;
     width: 120px;
     height: 15px;
     color: white;
