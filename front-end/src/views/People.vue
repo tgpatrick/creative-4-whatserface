@@ -30,7 +30,7 @@
       </div>
     </section>
     <button class="addButton" v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
-    <button v-else @click="toggleAdd">Done</button>
+    <button class="addButton" v-else @click="toggleAdd">Done</button>
     <div v-if="adding">
       <div class="add">
         <form v-on:submit.prevent="addInlaw">
@@ -223,9 +223,9 @@
 
   .addButton {
     padding: 10px;
-    margin: 10px;
-    width: 60px;
-    height: 20px;
+    margin: 0 auto;
+    width: 120px;
+    height: 15px;
     color: white;
     text-align: center;
     background-color: #306d77;

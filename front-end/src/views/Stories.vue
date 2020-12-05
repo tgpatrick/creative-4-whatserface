@@ -22,7 +22,7 @@
       </div>
     </section>
     <button class="addButton" v-if="!adding" @click="toggleAdd">Add a Story</button>
-    <button v-else @click="toggleAdd">Done</button>
+    <button class="addButton" v-else @click="toggleAdd">Done</button>
     <div v-if="adding">
       <div class="add">
         <form v-on:submit.prevent="addStory">
@@ -186,27 +186,15 @@
     flex-direction: column;
   }
 
-  /* Uploaded images */
-  .upload h2 {
-    margin: 0px;
-  }
-
-  .upload img {
-    max-width: 300px;
-  }
-
-  /* Suggestions */
-  .suggestions {
-    width: 200px;
-    border: 1px solid #ccc;
-  }
-
-  .suggestion {
-    min-height: 20px;
-  }
-
-  .suggestion:hover {
-    background-color: #5BDEFF;
-    color: #fff;
+  .addButton {
+    padding: 10px;
+    margin: 0 auto;
+    width: 120px;
+    height: 15px;
+    color: white;
+    text-align: center;
+    background-color: #306d77;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px grey;
   }
 </style>
