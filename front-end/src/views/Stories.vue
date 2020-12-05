@@ -18,6 +18,7 @@
           <input type="text" v-model="newStoryTitle">
           <p><strong>People:</strong></p>
           <input type="text" v-model="newStoryPeople">
+          <p><strong>Story:</strong></p>
           <textarea type="text" v-model="newStory"></textarea>
           <button v-if="story.edit" @click="editStory(story)">Save</button>
         </div>
@@ -196,6 +197,7 @@
   }
 
   .buttons {
+    height: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
