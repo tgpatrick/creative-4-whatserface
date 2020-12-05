@@ -4,19 +4,15 @@
       <div class="person" v-for="inlaw in inlaws" :key="inlaw._id">
         <h3>{{inlaw.name}}</h3>
         <!-- <img :src="item.path" /> -->
-        <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
-        <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
-        <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
-        <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
-        <button @click="deleteInlaw(inlaw)">Delete</button>
-      </div>
-    </section>
-    <button @click="toggleAdd">Add</button>
-    <div v-if="adding">
-      <form v-on:submit.prevent="addInlaw">
-        <p><strong>Name:</strong></p>
-        <input type="text" v-model="newInlawName">
-        <div class="formSection">
+        <div v-if="inlaw.edit">
+          <p> <strong>Relation:</strong> {{inlaw.relation}} </p>
+          <p> <strong>Birthday:</strong> {{inlaw.birthday}} </p>
+          <p> <strong>Hobbies:</strong> {{inlaw.hobbies}} </p>
+          <p> <strong>Notes:</strong> {{inlaw.notes}} </p>
+          <button @click="deleteInlaw(inlaw)">Delete</button>
+          <button @click="toggleEdit(inlaw)">Edit</button>
+        </div>
+        <div v-else>
           <p><strong>Relation:</strong></p>
           <input type="text" v-model="newInlawRelation">
           <p><strong>Birthday:</strong></p>
@@ -25,9 +21,29 @@
           <input type="text" v-model="newInlawHobbies">
           <p><strong>Notes:</strong></p>
           <input type="text" v-model="newInlawNotes">
+          <button v-if="inlaw.edit" @click="editInlaw(inlaw)">Save</button>
         </div>
-        <button type="submit">Submit</button>
-      </form>
+      </div>
+    </section>
+    <button @click="toggleAdd">Add</button>
+    <div v-if="adding">
+      <div class="add">
+        <form v-on:submit.prevent="addInlaw">
+          <p><strong>Name:</strong></p>
+          <input type="text" v-model="newInlawName">
+          <div class="formSection">
+            <p><strong>Relation:</strong></p>
+            <input type="text" v-model="newInlawRelation">
+            <p><strong>Birthday:</strong></p>
+            <input type="text" v-model="newInlawBirthday">
+            <p><strong>Hobbies:</strong></p>
+            <input type="text" v-model="newInlawHobbies">
+            <p><strong>Notes:</strong></p>
+            <input type="text" v-model="newInlawNotes">
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
       <p v-if="warning">You must include a name!</p>
     </div>
   </div>
@@ -90,7 +106,8 @@
             relation: this.newInlawRelation,
             birthday: this.newInlawBirthday,
             hobbies: this.newInlawHobbies,
-            notes: this.newInlawNotes
+            notes: this.newInlawNotes,
+            edit: false
           };
           console.log(newInlaw);
           axios.post(url, newInlaw)
@@ -120,6 +137,26 @@
           console.log(error);
         }
       },
+      async editInlaw(inlaw) {
+        try {
+          await axios.put("/api/inlaws/" + inlaw._id, {
+            name: this.newInlawName,
+            relation: this.newInlawRelation,
+            birthday: this.newInlawBirthday,
+            hobbies: this.newInlawHobbies,
+            notes: this.newInlawNotes,
+          });
+          this.newInlawName = '';
+          this.newInlawRelation = '';
+          this.newInlawBirthday = '';
+          this.newInlawHobbies = '';
+          this.newInlawNotes = '';
+          this.getItems();
+          return true;
+        } catch (error) {
+          //console.log(error);
+        }
+      },
       toggleAdd() {
         if (this.adding) {
           this.adding = false;
@@ -127,6 +164,14 @@
         } else {
           this.adding = true;
         }
+      },
+      toggleEdit(inlaw) {
+        this.newInlawName = inlaw.name;
+        this.newInlawRelation = inlaw.relation;
+        this.newInlawBirthday = inlaw.birthday;
+        this.newInlawHobbies = inlaw.hobbies;
+        this.newInlawNotes = inlaw.notes;
+        inlaw.edit = true
       }
     }
   }

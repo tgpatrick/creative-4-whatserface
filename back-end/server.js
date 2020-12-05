@@ -64,12 +64,6 @@ app.post('/api/inlaws/', async (req, res) => {
     console.log(error);
     res.sendStatus(500);
   }
-  // inlaw.save(function(err, inlaw) {
-  //   if (err) {
-  //     console.log(err)
-  //   }
-  //   res.json(inlaw);
-  // });
 });
 
 // Get a list of all of the items in the museum.
