@@ -8,8 +8,10 @@
           <h3>{{story.title}}</h3>
           <p> <strong>People:</strong> {{story.people}} </p>
           <p> {{story.story}} </p>
-          <button @click="deleteStory(story)">Delete</button>
-          <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
+          <div class="buttons">
+            <button @click="deleteStory(story)">Delete</button>
+            <button v-if="!editing" @click="toggleEdit(story)">Edit</button>
+          </div>
         </div>
         <div v-else>
           <p><strong>Title:</strong></p>
@@ -21,8 +23,10 @@
         </div>
       </div>
     </section>
-    <button class="addButton" v-if="!adding" @click="toggleAdd">Add a Story</button>
-    <button class="addButton" v-else @click="toggleAdd">Done</button>
+    <div class="buttons">
+      <button class="addButton" v-if="!adding" @click="toggleAdd">Add a Story</button>
+      <button class="addButton" v-else @click="toggleAdd">Done</button>
+    </div>
     <div v-if="adding">
       <div class="add">
         <form v-on:submit.prevent="addStory">
@@ -184,6 +188,16 @@
   .info {
     display: flex;
     flex-direction: column;
+  }
+
+  .person button {
+    margin: 5px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .addButton {

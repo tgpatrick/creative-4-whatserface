@@ -29,8 +29,10 @@
         </div>
       </div>
     </section>
-    <button class="addButton" v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
-    <button class="addButton" v-else @click="toggleAdd">Done</button>
+    <div class="buttons">
+      <button class="addButton" v-if="!adding" @click="toggleAdd">Add an Inlaw</button>
+      <button class="addButton" v-else @click="toggleAdd">Done</button>
+    </div>
     <div v-if="adding">
       <div class="add">
         <form v-on:submit.prevent="addInlaw">
