@@ -69,7 +69,7 @@
           let response = await axios.get(url);
           this.stories = response.data;
           return true;
-        } catch (error) {
+        } catch () {
           // console.log(error);
         }
       },
