@@ -10,12 +10,14 @@
       <h1>Whatserface</h1>
     </div>
   </div>
-  <router-link to="/">
-    <p class="pageLink">People</p>
-  </router-link>
-  <router-link to="/stories">
-    <p class="pageLink">Stories</p>
-  </router-link>
+  <div class="links">
+    <router-link to="/">
+      <p class="pageLink">People</p>
+    </router-link>
+    <router-link to="/stories">
+      <p class="pageLink">Stories</p>
+    </router-link>
+  </div>
   <div class="content">
     <router-view />
   </div>
@@ -59,11 +61,18 @@ body {
   font-size: 30px;
 }
 
+.links {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
 .pageLink {
   padding: 10px;
-  width: 50px;
+  width: 60px;
   height: 25px;
   color: white;
+  text-align: center;
   background-color: #306d77;
   border-radius: 10px;
   box-shadow: 5px;
